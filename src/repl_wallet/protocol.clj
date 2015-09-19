@@ -1,4 +1,5 @@
-(ns repl-wallet.protocol)
+(ns repl-wallet.protocol
+  (:refer-clojure :exclude [send]))
 
 (defprotocol Satoshis
   (current-balance [_]
@@ -19,3 +20,7 @@
       * an optional \"entropy\" or \"seed\" argument")
   (addresses [_]
     "List all addresses (implementing Satoshis, above) associated with this wallet"))
+
+(defprotocol Persist
+  (save [_ path]
+    "Saves the given item to the given file name"))
